@@ -21,8 +21,10 @@ function Ticket(props) {
       <div className="ticket-content">{ticketData.content}</div>
       <div className="ticket-footer">
         <div className="info">
-          <span className="footer-email">{ticketData.userEmail}</span> |{" "}
-          <span className="footer-time">{ticketData.creationTime}</span>
+          By <span className="footer-email">{ticketData.userEmail}</span> |{" "}
+          <span className="footer-time">
+            {convertTime(ticketData.creationTime)}
+          </span>
         </div>
         {ticketData.labels && (
           <div className="lables">
@@ -34,6 +36,15 @@ function Ticket(props) {
       </div>
     </div>
   );
+}
+
+function convertTime(timeInms) {
+  let date = new Date(timeInms);
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${
+    date.getHours() > 12 ? date.getHours() - 12 : date.getHours()
+  }:${date.getMinutes()}:${date.getSeconds()} ${
+    date.getHours() > 12 ? "PM" : "AM"
+  }`;
 }
 
 export default Ticket;
