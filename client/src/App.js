@@ -46,7 +46,7 @@ function App() {
         </div>
         <div id="search-container">
           <input
-            id="search-field"
+            id="searchInput"
             onChange={(event) => setSearchText(event.target.value)}
             placeholder="I'm looking for..."
           ></input>
