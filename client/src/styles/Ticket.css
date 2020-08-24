@@ -1,5 +1,5 @@
 .ticket {
-  padding: 10px 20px;
+  padding: 10px 20px 20px;
   margin: 20px auto;
   width: 80vw;
   border-radius: 5px;
@@ -32,6 +32,7 @@
 
 .ticket-title {
   font-weight: bold;
+  font-size: 1.1em;
   padding-bottom: 20px;
 }
 
@@ -53,7 +54,7 @@
   margin-right: 20px;
 }
 
-.lable {
+.label {
   background-color: rgba(218, 239, 254, 0.9);
   padding: 5px 15px;
   border-radius: 5px;
