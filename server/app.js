@@ -4,6 +4,7 @@ const fs = require("fs").promises;
 
 const dbPath = "./data.json";
 app.use(express.json());
+
 app.get("/api/tickets", async (req, res) => {
   const data = await fs.readFile(dbPath);
   const filterParam = req.query.searchText;
@@ -60,18 +61,18 @@ app.post("/api/tickets/:ticketId/undone", async (req, res) => {
   res.send({ updated: true });
 });
 
-const setIfDone = async (ticketId, isDone) => {
-  const data = await fs.readFile("./data.json");
-  const json = JSON.parse(data);
+// const setIfDone = async (ticketId, isDone) => {
+//   const data = await fs.readFile("./data.json");
+//   const json = JSON.parse(data);
 
-  for (elem of json) {
-    if (elem.id === ticketId) {
-      elem.done = isDone;
-      return;
-    }
-  }
+//   for (elem of json) {
+//     if (elem.id === ticketId) {
+//       elem.done = isDone;
+//       return;
+//     }
+//   }
 
-  await fs.writeFile("/data.json", JSON.stringify(json));
-};
+//   await fs.writeFile("/data.json", JSON.stringify(json));
+// };
 
 module.exports = app;
