@@ -1,3 +1,46 @@
 body {
   background-color: rgba(200, 200, 200, 0.4);
 }
+/* .head {
+  display: flex;
+  align-items: flex-end;
+} */
+#headers {
+  margin-left: 5vw;
+}
+#header {
+  font-size: 3em;
+  margin-bottom: 5px;
+}
+
+#subheader {
+  font-style: italic;
+  margin-top: 5px;
+}
+
+#search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-field {
+  width: 55vw;
+}
+
+.head-messages {
+  margin-top: 10px;
+  min-height: 5vh;
+  color: rgb(140, 140, 140);
+}
+.hidden-tickets-msg {
+  font-style: italic;
+}
+#restoreHideTickets {
+  cursor: pointer;
+  color: rgb(105, 180, 255);
+}
+
+#restoreHideTickets:hover {
+  color: lightskyblue;
+}

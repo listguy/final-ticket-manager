@@ -40,21 +40,33 @@ function App() {
   return (
     <>
       <div className="head">
-        <input
-          id="searchInput"
-          onChange={(event) => setSearchText(event.target.value)}
-        ></input>
-        {searchText && `Showing ${tickets.length} results`}
-        {hiddenTickets[0] && (
-          <div className="hidden-tickets-msg">
-            (<span id="hideTicketsCounter">{hiddenTickets.length}</span>
-            tickets hidden -
-            <span id="restoreHideTickets" onClick={() => setHiddenTickets([])}>
-              restore
-            </span>{" "}
-            )
+        <div id="headers">
+          <h1 id="header">Ticket Mannager</h1>
+          <h3 id="subheader">The WIX way</h3>
+        </div>
+        <div id="search-container">
+          <input
+            id="search-field"
+            onChange={(event) => setSearchText(event.target.value)}
+            placeholder="I'm looking for..."
+          ></input>
+          <div className="head-messages">
+            <span>{searchText && `Showing ${tickets.length} results `}</span>
+            {hiddenTickets[0] && (
+              <span className="hidden-tickets-msg">
+                (<span id="hideTicketsCounter">{hiddenTickets.length}</span>{" "}
+                hidden tickets -{" "}
+                <span
+                  id="restoreHideTickets"
+                  onClick={() => setHiddenTickets([])}
+                >
+                  restore
+                </span>
+                )
+              </span>
+            )}
           </div>
-        )}
+        </div>
       </div>
       <main>{tickets && printTickets()}</main>
     </>
