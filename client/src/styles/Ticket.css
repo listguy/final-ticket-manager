@@ -1,0 +1,32 @@
+.ticket {
+  display: grid;
+  grid-rows: 1f 1f 1f;
+  padding: 10px;
+  margin: 10px;
+  width: 80vw;
+  background-color: rgba(20, 20, 20, 0.1);
+}
+
+.ticket-title {
+  font-weight: bold;
+}
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.info {
+  font-size: 0.8em;
+}
+
+.lables {
+  margin-right: 20px;
+}
+
+.lable {
+  background-color: rgba(218, 239, 254, 0.9);
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin: auto 3px;
+}

@@ -18,11 +18,7 @@ function App() {
   }, []);
 
   const printTickets = () => {
-    return tickets.map((t) => (
-      <li>
-        <Ticket ticketData={t} />
-      </li>
-    ));
+    return tickets.map((t, i) => <Ticket key={`ticket${i}`} ticketData={t} />);
   };
 
   return <main>{tickets && printTickets()}</main>;
