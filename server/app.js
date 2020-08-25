@@ -5,6 +5,26 @@ const fs = require("fs").promises;
 const dbPath = "./data.json";
 app.use(express.json());
 
+app.get("/api/tickets/labels", async (req, res) => {
+  const data = await fs.readFile(dbPath);
+  try {
+    const json = JSON.parse(data);
+
+    const labels = [];
+    Array.from(json).forEach((ticket) => {
+      ticket.labels &&
+        ticket.labels.forEach((l) => {
+          !labels.includes(l) && labels.push(l);
+        });
+    });
+
+    res.send(labels);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+//#region don't touch this section
 app.get("/api/tickets", async (req, res) => {
   const data = await fs.readFile(dbPath);
   const filterParam = req.query.searchText;
@@ -13,11 +33,10 @@ app.get("/api/tickets", async (req, res) => {
     const json = JSON.parse(data);
     if (filterParam) {
       const filterRegx = new RegExp(`${filterParam}`, "i", "g");
-      filteredData = Array.from(json.tickets).filter((elem) =>
+      filteredData = Array.from(json).filter((elem) =>
         filterRegx.test(elem.title)
       );
-      const filteredJson = { tickets: filteredData, allLabels: json.allLabels };
-      res.send(filteredJson);
+      res.send(filteredData);
     } else {
       res.send(json);
     }
@@ -61,19 +80,6 @@ app.post("/api/tickets/:ticketId/undone", async (req, res) => {
 
   res.send({ updated: true });
 });
-
-// const setIfDone = async (ticketId, isDone) => {
-//   const data = await fs.readFile("./data.json");
-//   const json = JSON.parse(data);
-
-//   for (elem of json) {
-//     if (elem.id === ticketId) {
-//       elem.done = isDone;
-//       return;
-//     }
-//   }
-
-//   await fs.writeFile("/data.json", JSON.stringify(json));
-// };
-
+//#endregion
+// DON'T touch the data.json either
 module.exports = app;

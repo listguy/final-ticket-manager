@@ -23,9 +23,12 @@ function App() {
   const fetchTickets = async () => {
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
     const { data } = await axios.get(url);
-    setTickets(data.tickets);
-    allLabels.length !== data.allLabels.length && setAlllabels(data.allLabels);
-    searchText ? setResultCounter(data.tickets.length) : setResultCounter(0);
+    setTickets(data);
+    let labels = await axios.get("/api/tickets/labels");
+    console.log(labels);
+    labels = labels.data;
+    allLabels.length !== labels.length && setAlllabels(labels);
+    searchText ? setResultCounter(data.length) : setResultCounter(0);
   };
 
   useEffect(() => {
@@ -66,7 +69,6 @@ function App() {
     }
     return toDisplay.map((t, i) => (
       <Ticket
-        className="fade-in"
         key={`ticket${i}`}
         ticketData={t}
         hide={hideTicket}
