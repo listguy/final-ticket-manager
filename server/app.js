@@ -24,6 +24,33 @@ app.get("/api/tickets/labels", async (req, res) => {
   }
 });
 
+app.post("/api/tickets", async (req, res) => {
+  const data = await fs.readFile(dbPath);
+  const json = JSON.parse(data);
+
+  try {
+    const body = req.body;
+    console.log(body);
+    let newTicket = {
+      id: Math.floor(Math.random() * 10 ** 10) + "",
+      title: body.title,
+      content: body.content,
+      userEmail: body.email ? body.email : "Anonymous",
+      creationTime: new Date().getTime(),
+    };
+    body.labels[0] && Object.assign(newTicket, { labels: body.labels });
+
+    json.unshift(newTicket);
+    console.log(newTicket);
+
+    await fs.writeFile(dbPath, JSON.stringify(json));
+
+    res.send({ sucseed: true, ticket: newTicket });
+  } catch (e) {
+    res.send({ sucseed: false });
+  }
+});
+
 //#region don't touch this section
 app.get("/api/tickets", async (req, res) => {
   const data = await fs.readFile(dbPath);

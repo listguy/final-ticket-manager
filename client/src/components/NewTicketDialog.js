@@ -7,9 +7,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddButton from "./AddButton";
+import axios from "axios";
 
-export default function NewTicketDialog() {
+export default function NewTicketDialog(props) {
   const [open, setOpen] = React.useState(false);
+  //   const [sucess, setSucsess] = React.useState();
   const newTicket = {
     title: "",
     content: "",
@@ -25,10 +27,25 @@ export default function NewTicketDialog() {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
-    alert(
-      `${newTicket.title}, ${newTicket.content}, ${newTicket.email}, ${newTicket.labels}`
-    );
+  const handleSubmit = async () => {
+    // alert(
+    //   `${newTicket.title}, ${newTicket.content}, ${newTicket.email}, ${newTicket.labels}`
+    // );
+    if (!newTicket.title || !newTicket.content) return;
+
+    let parsedLabels = newTicket.labels
+      .split(",")
+      .map((l) => l.replace(/(^\s+|\s+$)/g, "")); // spliting string to an array and striping all leading and trailing whitespaces
+    parsedLabels = parsedLabels.filter((l) => l !== "");
+    let req = {
+      title: newTicket.title,
+      content: newTicket.content,
+      email: newTicket.email,
+      labels: parsedLabels,
+    };
+
+    let sucseed = await axios.post("/api/tickets", req);
+    props.addTicketToPage();
     setOpen(false);
   };
 
@@ -44,7 +61,10 @@ export default function NewTicketDialog() {
       >
         <DialogTitle id="form-dialog-title">New Ticket</DialogTitle>
         <DialogContent>
-          <DialogContentText>Please enter a title</DialogContentText>
+          <DialogContentText>
+            Please fill the details below. Note: fields marked with * are
+            required!
+          </DialogContentText>
           <TextField
             autoFocus
             id="name"

@@ -27,7 +27,6 @@ function App() {
     const { data } = await axios.get(url);
     setTickets(data);
     let labels = await axios.get("/api/tickets/labels");
-    console.log(labels);
     labels = labels.data;
     allLabels.length !== labels.length && setAlllabels(labels);
     searchText ? setResultCounter(data.length) : setResultCounter(0);
@@ -58,8 +57,8 @@ function App() {
     !newArr[0] && setResultCounter(0);
   };
 
-  const addTicket = () => {
-    alert("add");
+  const addTicketToPage = () => {
+    fetchTickets();
   };
 
   const displayTickets = () => {
@@ -150,8 +149,7 @@ function App() {
           </div>
           <main>{tickets && displayTickets()}</main>
         </div>
-        {/* <AddButton addTicket={addTicket} /> */}
-        <NewTicketDialog />
+        <NewTicketDialog addTicketToPage={addTicketToPage} />
       </>
     </ThemeProvider>
   ) : (
