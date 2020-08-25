@@ -5,6 +5,11 @@
   border-radius: 15px;
 }
 
+.fade-out {
+  transition: opacity 1s;
+  opacity: 0.5;
+}
+
 .hideTicketButton {
   width: fit-content;
   margin-left: auto;
@@ -23,7 +28,7 @@
 
 .ticket-content {
   padding-bottom: 20px;
-  line-height: 1.5em;
+  line-height: 2em;
 }
 .ticket-footer {
   display: flex;
@@ -40,6 +45,7 @@
 }
 
 .label {
+  cursor: pointer;
   padding: 5px 15px;
   border-radius: 5px;
   margin: auto 3px;

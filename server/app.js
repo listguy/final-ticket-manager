@@ -13,10 +13,11 @@ app.get("/api/tickets", async (req, res) => {
     const json = JSON.parse(data);
     if (filterParam) {
       const filterRegx = new RegExp(`${filterParam}`, "i", "g");
-      filteredData = Array.from(json).filter((elem) =>
+      filteredData = Array.from(json.tickets).filter((elem) =>
         filterRegx.test(elem.title)
       );
-      res.send(filteredData);
+      const filteredJson = { tickets: filteredData, allLabels: json.allLabels };
+      res.send(filteredJson);
     } else {
       res.send(json);
     }

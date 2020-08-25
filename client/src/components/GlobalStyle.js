@@ -26,6 +26,14 @@ export const BodyStyle = createGlobalStyle`
     background: ${({ theme }) => theme.body.body};
   }
 
+  .label:hover, .head-label:hover, .inactive-label {
+    background: ${({ theme }) => theme.body.text};
+    color: ${({ theme }) => theme.body.body};
+  }
+  
   .hideTicketButton:hover {
     color: ${({ theme }) => theme.body.text}; 
-  `;
+  }
+
+  
+    `;

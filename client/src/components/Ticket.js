@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Ticket.css";
 
 function Ticket(props) {
-  const { ticketData, hide, hidden, theme } = props;
+  const { ticketData, hide, hidden, setLabelActive } = props;
 
   return hidden ? null : (
     <>
@@ -22,7 +22,9 @@ function Ticket(props) {
           {ticketData.labels && (
             <div className="lables">
               {ticketData.labels.map((label) => (
-                <span className="label">{label}</span>
+                <span className="label" onClick={() => setLabelActive(label)}>
+                  {label}
+                </span>
               ))}
             </div>
           )}

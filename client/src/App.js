@@ -13,13 +13,19 @@ function App() {
   const [searchText, setSearchText] = useState();
   const [hiddenTickets, setHiddenTickets] = useState([]);
   const [theme, changeTheme, themeLoaded] = useDarkMode();
+  const [activeLabels, setActiveLabels] = useState([]);
+  const [resultsCounter, setResultCounter] = useState(0);
+  const [allLabels, setAlllabels] = useState([]);
+  const [filterByAll, setFilterByAll] = useState(false);
 
   const currentStyle = theme === "light" ? lightTheme : darkTheme;
 
   const fetchTickets = async () => {
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
     const { data } = await axios.get(url);
-    setTickets(data);
+    setTickets(data.tickets);
+    allLabels.length !== data.allLabels.length && setAlllabels(data.allLabels);
+    searchText ? setResultCounter(data.tickets.length) : setResultCounter(0);
   };
 
   useEffect(() => {
@@ -32,13 +38,39 @@ function App() {
     setHiddenTickets(updatedArr);
   };
 
-  const printTickets = () => {
-    return tickets.map((t, i) => (
+  const addActiveLabel = (label) => {
+    if (activeLabels.includes(label)) return;
+    let newArr = activeLabels.slice();
+    newArr.unshift(label);
+    setActiveLabels(newArr);
+  };
+  const removeActiveLabel = (label) => {
+    let newArr = activeLabels.slice();
+    console.log(label);
+    console.log(activeLabels.indexOf(label));
+    newArr.splice(activeLabels.indexOf(label), 1);
+    setActiveLabels(newArr);
+    !newArr[0] && setResultCounter(0);
+  };
+
+  const displayTickets = () => {
+    let toDisplay = tickets;
+    if (activeLabels[0]) {
+      let filterMethod = filterByAll ? "every" : "some";
+      toDisplay = tickets.filter((t) => {
+        return t.labels
+          ? activeLabels[filterMethod]((al) => t.labels.includes(al))
+          : false;
+      });
+      toDisplay.length !== resultsCounter && setResultCounter(toDisplay.length);
+    }
+    return toDisplay.map((t, i) => (
       <Ticket
-        theme={currentStyle}
+        className="fade-in"
         key={`ticket${i}`}
         ticketData={t}
         hide={hideTicket}
+        setLabelActive={addActiveLabel}
         hidden={hiddenTickets.includes(t.id)}
       />
     ));
@@ -65,7 +97,7 @@ function App() {
               ></input>
               <div className="head-messages">
                 <span>
-                  {searchText && `Showing ${tickets.length} results `}
+                  {resultsCounter !== 0 && `Showing ${resultsCounter} results `}
                 </span>
                 {hiddenTickets[0] && (
                   <span className="hidden-tickets-msg">
@@ -82,8 +114,33 @@ function App() {
                 )}
               </div>
             </div>
+            <div id="filter-lables">
+              <div id="lables-container">
+                {allLabels[0] &&
+                  allLabels.map((l) => {
+                    let aState = activeLabels.includes(l);
+                    return (
+                      <span
+                        className={aState ? "active-label" : "inactive-label"}
+                        onClick={() =>
+                          aState ? removeActiveLabel(l) : addActiveLabel(l)
+                        }
+                      >
+                        {l}
+                      </span>
+                    );
+                  })}
+              </div>
+              <div id="filterToggler">
+                <input
+                  type="checkbox"
+                  onClick={(event) => setFilterByAll(event.target.checked)}
+                />{" "}
+                include all labels?
+              </div>
+            </div>
           </div>
-          <main>{tickets && printTickets()}</main>
+          <main>{tickets && displayTickets()}</main>
         </div>
       </>
     </ThemeProvider>
