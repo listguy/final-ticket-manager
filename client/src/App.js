@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Ticket from "./components/Ticket.js";
+import AddButton from "./components/AddButton";
+import NewTicketDialog from "./components/NewTicketDialog";
 import { ThemeProvider } from "styled-components";
 import { BodyStyle } from "./components/GlobalStyle.js";
 import { lightTheme, darkTheme } from "./components/Themes.js";
@@ -54,6 +56,10 @@ function App() {
     newArr.splice(activeLabels.indexOf(label), 1);
     setActiveLabels(newArr);
     !newArr[0] && setResultCounter(0);
+  };
+
+  const addTicket = () => {
+    alert("add");
   };
 
   const displayTickets = () => {
@@ -144,6 +150,8 @@ function App() {
           </div>
           <main>{tickets && displayTickets()}</main>
         </div>
+        {/* <AddButton addTicket={addTicket} /> */}
+        <NewTicketDialog />
       </>
     </ThemeProvider>
   ) : (
