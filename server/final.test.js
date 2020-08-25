@@ -5,6 +5,7 @@ const request = require("supertest");
 const full4s = require("@suvelocity/tester");
 const app = require("./app");
 const data = require("./data.json");
+const fs = require("fs").promises; //using fs for test 3
 
 const projectName = "1.Tickets manager backend";
 describe(projectName, () => {
@@ -47,7 +48,9 @@ describe(projectName, () => {
       .expect(200);
 
     expect(body.updated).toBe(true);
-    const updatedData = require("./data.json");
+    // const updatedData = require("./data.json");
+    //switched to reading from data.json using fs instead of require, in both parts of the third test
+    const updatedData = JSON.parse(await fs.readFile("./data.json"));
     expect(updatedData[0].done).toBe(!currentState);
 
     const { body: undoneBody } = await request(app)
@@ -58,7 +61,8 @@ describe(projectName, () => {
       .expect(200);
 
     expect(undoneBody.updated).toBe(true);
-    const updatedData2 = require("./data.json");
+    // const updatedData2 = require("./data.json");
+    const updatedData2 = JSON.parse(await fs.readFile("./data.json"));
     expect(updatedData2[0].done).toBe(currentState);
   });
 });
