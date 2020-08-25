@@ -1,10 +1,8 @@
-body {
-  background-color: rgba(200, 200, 200, 0.4);
+#theme-toggler {
+  cursor: pointer;
+  margin: 10px;
+  font-size: 2em;
 }
-/* .head {
-  display: flex;
-  align-items: flex-end;
-} */
 #headers {
   margin-left: 5vw;
 }
