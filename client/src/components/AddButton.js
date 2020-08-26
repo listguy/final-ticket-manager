@@ -1,6 +1,6 @@
-import React from "react";
-import AddIcon from "@material-ui/icons/Add";
-import styled from "styled-components";
+import React from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import styled from 'styled-components';
 
 export default function (props) {
   const FloatingAddButton = styled.div`
@@ -21,7 +21,7 @@ export default function (props) {
 
   return (
     <FloatingAddButton id="addButton" onClick={props.clickHandler}>
-      <AddIcon></AddIcon>
+      <AddIcon />
     </FloatingAddButton>
   );
 }

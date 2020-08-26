@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+
 export const BodyStyle = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body.body};

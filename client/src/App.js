@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Ticket from "./components/Ticket.js";
-import AddButton from "./components/AddButton";
 import NewTicketDialog from "./components/NewTicketDialog";
 import { ThemeProvider } from "styled-components";
 import { BodyStyle } from "./components/GlobalStyle.js";
 import { lightTheme, darkTheme } from "./components/Themes.js";
 import { useDarkMode } from "./components/useDarkMode.js";
 import { FiSun, FiMoon } from "react-icons/fi";
-import "./App.css";
+import SearchBar from "./components/SearchBar.js";
+import LabelsBar from "./components/LabelsBar.js";
+import "./styles/App.css";
 
 function App() {
   const [tickets, setTickets] = useState();
@@ -96,56 +97,19 @@ function App() {
               <h1 id="header">Ticket Mannager</h1>
               <h3 id="subheader">The WIX way</h3>
             </div>
-            <div id="search-container">
-              <input
-                id="searchInput"
-                onChange={(event) => setSearchText(event.target.value)}
-                placeholder="I'm looking for..."
-              ></input>
-              <div className="head-messages">
-                <span>
-                  {resultsCounter !== 0 && `Showing ${resultsCounter} results `}
-                </span>
-                {hiddenTickets[0] && (
-                  <span className="hidden-tickets-msg">
-                    (<span id="hideTicketsCounter">{hiddenTickets.length}</span>{" "}
-                    hidden tickets -{" "}
-                    <span
-                      id="restoreHideTickets"
-                      onClick={() => setHiddenTickets([])}
-                    >
-                      restore
-                    </span>
-                    )
-                  </span>
-                )}
-              </div>
-            </div>
-            <div id="filter-lables">
-              <div id="lables-container">
-                {allLabels[0] &&
-                  allLabels.map((l) => {
-                    let aState = activeLabels.includes(l);
-                    return (
-                      <span
-                        className={aState ? "active-label" : "inactive-label"}
-                        onClick={() =>
-                          aState ? removeActiveLabel(l) : addActiveLabel(l)
-                        }
-                      >
-                        {l}
-                      </span>
-                    );
-                  })}
-              </div>
-              <div id="filterToggler">
-                <input
-                  type="checkbox"
-                  onClick={(event) => setFilterByAll(event.target.checked)}
-                />{" "}
-                include all labels?
-              </div>
-            </div>
+            <SearchBar
+              setSearchText={setSearchText}
+              resultsCounter={resultsCounter}
+              hiddenTickets={hiddenTickets}
+              setHiddenTickets={setHiddenTickets}
+            />
+            <LabelsBar
+              allLabels={allLabels}
+              activeLabels={activeLabels}
+              removeActiveLabel={removeActiveLabel}
+              addActiveLabel={addActiveLabel}
+              setFilterByAll={setFilterByAll}
+            />
           </div>
           <main>{tickets && displayTickets()}</main>
         </div>

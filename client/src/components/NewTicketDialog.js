@@ -1,22 +1,22 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import AddButton from "./AddButton";
-import axios from "axios";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import axios from 'axios';
+import AddButton from './AddButton';
 
 export default function NewTicketDialog(props) {
   const [open, setOpen] = React.useState(false);
   //   const [sucess, setSucsess] = React.useState();
   const newTicket = {
-    title: "",
-    content: "",
-    email: "",
-    labels: "",
+    title: '',
+    content: '',
+    email: '',
+    labels: '',
   };
 
   const handleClickOpen = () => {
@@ -34,17 +34,17 @@ export default function NewTicketDialog(props) {
     if (!newTicket.title || !newTicket.content) return;
 
     let parsedLabels = newTicket.labels
-      .split(",")
-      .map((l) => l.replace(/(^\s+|\s+$)/g, "")); // spliting string to an array and striping all leading and trailing whitespaces
-    parsedLabels = parsedLabels.filter((l) => l !== "");
-    let req = {
+      .split(',')
+      .map((l) => l.replace(/(^\s+|\s+$)/g, '')); // spliting string to an array and striping all leading and trailing whitespaces
+    parsedLabels = parsedLabels.filter((l) => l !== '');
+    const req = {
       title: newTicket.title,
       content: newTicket.content,
       email: newTicket.email,
       labels: parsedLabels,
     };
 
-    let sucseed = await axios.post("/api/tickets", req);
+    const sucseed = await axios.post('/api/tickets', req);
     props.addTicketToPage();
     setOpen(false);
   };

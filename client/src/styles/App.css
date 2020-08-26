@@ -1,0 +1,17 @@
+#theme-toggler {
+  cursor: pointer;
+  margin: 10px;
+  font-size: 2em;
+}
+#headers {
+  margin-left: 5vw;
+}
+#header {
+  font-size: 3em;
+  margin-bottom: 5px;
+}
+
+#subheader {
+  font-style: italic;
+  margin-top: 5px;
+}
