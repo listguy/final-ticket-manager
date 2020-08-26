@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const BodyStyle = createGlobalStyle`
   body {
@@ -8,6 +8,10 @@ export const BodyStyle = createGlobalStyle`
     transition: all 0.50s linear;
   }
 
+  #searchInput {
+    background: ${({ theme }) => theme.body.text};
+    color: ${({ theme }) => theme.body.body};
+  }
   .ticket {
     background: ${({ theme }) => theme.ticket.background};
     box-shadow: ${({ theme }) => theme.ticket.boxShadow};

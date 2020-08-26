@@ -9,10 +9,14 @@ import { useDarkMode } from "./components/useDarkMode.js";
 import { FiSun, FiMoon } from "react-icons/fi";
 import SearchBar from "./components/SearchBar.js";
 import LabelsBar from "./components/LabelsBar.js";
+import swal from "sweetalert";
+import BackToTop from "./components/BackToTop";
+import { MdSettingsInputAntenna } from "react-icons/md";
+import { BsSearch } from "react-icons/bs";
 import "./styles/App.css";
 
 function App() {
-  const [tickets, setTickets] = useState();
+  const [tickets, setTickets] = useState(null);
   const [searchText, setSearchText] = useState();
   const [hiddenTickets, setHiddenTickets] = useState([]);
   const [theme, changeTheme, themeLoaded] = useDarkMode();
@@ -22,6 +26,8 @@ function App() {
   const [filterByAll, setFilterByAll] = useState(false);
 
   const currentStyle = theme === "light" ? lightTheme : darkTheme;
+
+  const connectedToApi = tickets && allLabels[0];
 
   const fetchTickets = async () => {
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
@@ -73,15 +79,23 @@ function App() {
       });
       toDisplay.length !== resultsCounter && setResultCounter(toDisplay.length);
     }
-    return toDisplay.map((t, i) => (
-      <Ticket
-        key={`ticket${i}`}
-        ticketData={t}
-        hide={hideTicket}
-        setLabelActive={addActiveLabel}
-        hidden={hiddenTickets.includes(t.id)}
-      />
-    ));
+    if (toDisplay[0]) {
+      return toDisplay.map((t, i) => (
+        <Ticket
+          key={`ticket${i}`}
+          ticketData={t}
+          hide={hideTicket}
+          setLabelActive={addActiveLabel}
+          hidden={hiddenTickets.includes(t.id)}
+        />
+      ));
+    }
+    return (
+      <div class="errMsg">
+        <p> No results found</p>
+        <BsSearch size={"16em"} />
+      </div>
+    );
   };
 
   return themeLoaded ? (
@@ -111,14 +125,28 @@ function App() {
               setFilterByAll={setFilterByAll}
             />
           </div>
-          <main>{tickets && displayTickets()}</main>
+          <main>
+            {tickets ? (
+              displayTickets()
+            ) : (
+              <div class="errMsg">
+                <p>Connection Error</p>
+                <MdSettingsInputAntenna size={"17em"} />
+              </div>
+            )}
+          </main>
         </div>
+        {/* {!connectedToApi &&
+          swal(
+            "Connection Error",
+            "Check your internet connection or visit us later",
+            "error"
+          )} */}
+        <BackToTop />
         <NewTicketDialog addTicketToPage={addTicketToPage} />
       </>
     </ThemeProvider>
-  ) : (
-    <div />
-  );
+  ) : null;
 }
 
 export default App;

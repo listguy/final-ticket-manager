@@ -6,6 +6,15 @@
 
 #searchInput {
   width: 55vw;
+  height: 2em;
+  font-size: 1.5em;
+  font-style: italic;
+  border-radius: 25px;
+  border: none;
+}
+
+#searchInput:focus {
+  outline: none;
 }
 
 .head-messages {

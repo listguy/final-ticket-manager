@@ -1,12 +1,12 @@
 import React from "react";
-import { FiPlus } from "react-icons/fi";
+import { TiArrowUpThick } from "react-icons/ti";
 import styled from "styled-components";
 
-export default function (props) {
+export default function BackToTop() {
   const FloatingAddButton = styled.div`
      {
       position: fixed;
-      top: 88vh;
+      top: 5vh;
       left: 93vw;
       background-color: rgba(230, 210, 40, 0.7);
       width: 4em;
@@ -20,8 +20,10 @@ export default function (props) {
   `;
 
   return (
-    <FloatingAddButton id="addButton" onClick={props.clickHandler}>
-      <FiPlus size={"2em"} />
-    </FloatingAddButton>
+    <a href="#">
+      <FloatingAddButton id="bttButton">
+        <TiArrowUpThick size={"2em"} />
+      </FloatingAddButton>
+    </a>
   );
 }

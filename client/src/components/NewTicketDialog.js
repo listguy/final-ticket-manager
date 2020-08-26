@@ -1,22 +1,23 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import axios from 'axios';
-import AddButton from './AddButton';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import axios from "axios";
+import AddButton from "./AddButton";
+import swal from "sweetalert";
 
 export default function NewTicketDialog(props) {
   const [open, setOpen] = React.useState(false);
-  //   const [sucess, setSucsess] = React.useState();
+
   const newTicket = {
-    title: '',
-    content: '',
-    email: '',
-    labels: '',
+    title: "",
+    content: "",
+    email: "",
+    labels: "",
   };
 
   const handleClickOpen = () => {
@@ -28,15 +29,12 @@ export default function NewTicketDialog(props) {
   };
 
   const handleSubmit = async () => {
-    // alert(
-    //   `${newTicket.title}, ${newTicket.content}, ${newTicket.email}, ${newTicket.labels}`
-    // );
     if (!newTicket.title || !newTicket.content) return;
 
     let parsedLabels = newTicket.labels
-      .split(',')
-      .map((l) => l.replace(/(^\s+|\s+$)/g, '')); // spliting string to an array and striping all leading and trailing whitespaces
-    parsedLabels = parsedLabels.filter((l) => l !== '');
+      .split(",")
+      .map((l) => l.replace(/(^\s+|\s+$)/g, "")); // spliting string to an array and striping all leading and trailing whitespaces
+    parsedLabels = parsedLabels.filter((l) => l !== "");
     const req = {
       title: newTicket.title,
       content: newTicket.content,
@@ -44,8 +42,28 @@ export default function NewTicketDialog(props) {
       labels: parsedLabels,
     };
 
-    const sucseed = await axios.post('/api/tickets', req);
-    props.addTicketToPage();
+    try {
+      const res = await axios.post("/api/tickets", req);
+      res.data.sucseed && props.addTicketToPage();
+      const status = res.data.sucseed
+        ? "Ticket was added Successfully!"
+        : "It seems there's been an error. Oof :(";
+      swal({
+        title: "Attention!",
+        text: status,
+        timer: 5000,
+        showConfirmButton: true,
+        button: status ? "Yess!" : "Oof",
+      });
+    } catch {
+      swal({
+        title: "Attention!",
+        text: "it seems there's been an with the server. Oof :(",
+        timer: 5000,
+        showConfirmButton: true,
+        button: "Damn",
+      });
+    }
     setOpen(false);
   };
 
