@@ -31,11 +31,11 @@ function App() {
   const fetchTickets = async () => {
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
     const { data } = await axios.get(url);
+    setTickets(data);
     let labels = await axios.get("/api/tickets/labels");
     labels = labels.data;
     allLabels.length !== labels.length && setAlllabels(labels);
     searchText ? setResultCounter(data.length) : setResultCounter(0);
-    setTickets(data);
   };
 
   useEffect(() => {
