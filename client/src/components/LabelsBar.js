@@ -1,5 +1,5 @@
-import React from "react";
-import "../styles/LabelsBar.css";
+import React from 'react';
+import '../styles/LabelsBar.css';
 
 export default function LabelsBar(props) {
   const {
@@ -13,16 +13,14 @@ export default function LabelsBar(props) {
   return (
     <div id="filter-lables">
       <div id="lables-container">
-        {allLabels[0] &&
-          allLabels.map((l, i) => {
+        {allLabels[0]
+          && allLabels.map((l) => {
             const aState = activeLabels.includes(l);
             return (
               <span
-                key={`lBar${i}`}
-                className={aState ? "active-label" : "inactive-label"}
-                onClick={() =>
-                  aState ? removeActiveLabel(l) : addActiveLabel(l)
-                }
+                key={`lBar:${l}`}
+                className={aState ? 'active-label' : 'inactive-label'}
+                onClick={() => (aState ? removeActiveLabel(l) : addActiveLabel(l))}
               >
                 {l}
               </span>
@@ -33,7 +31,8 @@ export default function LabelsBar(props) {
         <input
           type="checkbox"
           onClick={(event) => setFilterByAll(event.target.checked)}
-        />{" "}
+        />
+        {' '}
         include all labels?
       </div>
     </div>

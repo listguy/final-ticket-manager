@@ -1,6 +1,6 @@
-import React from "react";
-import { FiPlus } from "react-icons/fi";
-import styled from "styled-components";
+import React from 'react';
+import { FiPlus } from 'react-icons/fi';
+import styled from 'styled-components';
 
 export default function (props) {
   const FloatingAddButton = styled.div`
@@ -21,7 +21,7 @@ export default function (props) {
 
   return (
     <FloatingAddButton id="addButton" onClick={props.clickHandler}>
-      <FiPlus size={"2em"} />
+      <FiPlus size="2em" />
     </FloatingAddButton>
   );
 }

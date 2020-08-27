@@ -1,6 +1,6 @@
-import React from "react";
-import { TiArrowUpThick } from "react-icons/ti";
-import styled from "styled-components";
+import React from 'react';
+import { TiArrowUpThick } from 'react-icons/ti';
+import styled from 'styled-components';
 
 export default function BackToTop() {
   const FloatingAddButton = styled.div`
@@ -22,7 +22,7 @@ export default function BackToTop() {
   return (
     <a href="#">
       <FloatingAddButton id="bttButton">
-        <TiArrowUpThick size={"2em"} />
+        <TiArrowUpThick size="2em" />
       </FloatingAddButton>
     </a>
   );
