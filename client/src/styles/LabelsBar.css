@@ -1,0 +1,37 @@
+#filter-lables {
+  display: flex;
+  align-items: baseline;
+  margin: 0px 5vw 40px;
+  width: 80vw;
+}
+
+#lables-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 15px;
+}
+
+#filterToggler {
+  margin-left: auto;
+  min-width: fit-content;
+}
+
+.active-label,
+.inactive-label {
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin: 3px 3px;
+  width: fit-content;
+}
+
+.active-label {
+  background-color: rgb(230, 210, 40);
+}
+.inactive-label {
+  opacity: 0.5;
+}
+
+.inactive-label:hover {
+  background-color: rgb(230, 210, 40);
+}
