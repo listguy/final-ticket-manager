@@ -66,4 +66,4 @@ Use a popular style guide - Airbnb
 
 
 Glitch:
-https://listguy-ticket-mannager-glitch2-1.glitch.me
+https://listguy-ticket-mannager-glitch2-2.glitch.me
