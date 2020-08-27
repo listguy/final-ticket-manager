@@ -9,7 +9,6 @@ import { useDarkMode } from "./components/useDarkMode.js";
 import { FiSun, FiMoon } from "react-icons/fi";
 import SearchBar from "./components/SearchBar.js";
 import LabelsBar from "./components/LabelsBar.js";
-import swal from "sweetalert";
 import BackToTop from "./components/BackToTop";
 import { MdSettingsInputAntenna } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
@@ -136,12 +135,6 @@ function App() {
             )}
           </main>
         </div>
-        {/* {!connectedToApi &&
-          swal(
-            "Connection Error",
-            "Check your internet connection or visit us later",
-            "error"
-          )} */}
         <BackToTop />
         <NewTicketDialog addTicketToPage={addTicketToPage} />
       </>
