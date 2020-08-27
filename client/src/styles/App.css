@@ -29,3 +29,8 @@ html {
   font-size: 3em;
   margin-bottom: 1em;
 }
+
+main {
+  width: 95vw;
+  margin: 0 1vw;
+}

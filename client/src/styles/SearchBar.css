@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 95vw;
+  margin: 0 1vw;
 }
 
 #searchInput {
@@ -11,6 +13,7 @@
   font-style: italic;
   border-radius: 25px;
   border: none;
+  padding-left: 1em;
 }
 
 #searchInput:focus {

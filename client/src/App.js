@@ -31,11 +31,11 @@ function App() {
   const fetchTickets = async () => {
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
     const { data } = await axios.get(url);
-    setTickets(data);
     let labels = await axios.get("/api/tickets/labels");
     labels = labels.data;
     allLabels.length !== labels.length && setAlllabels(labels);
     searchText ? setResultCounter(data.length) : setResultCounter(0);
+    setTickets(data);
   };
 
   useEffect(() => {
@@ -86,11 +86,12 @@ function App() {
           hide={hideTicket}
           setLabelActive={addActiveLabel}
           hidden={hiddenTickets.includes(t.id)}
+          index={i}
         />
       ));
     }
     return (
-      <div class="errMsg">
+      <div className="errMsg">
         <p> No results found</p>
         <BsSearch size={"16em"} />
       </div>
@@ -128,7 +129,7 @@ function App() {
             {tickets ? (
               displayTickets()
             ) : (
-              <div class="errMsg">
+              <div className="errMsg">
                 <p>Connection Error</p>
                 <MdSettingsInputAntenna size={"17em"} />
               </div>
