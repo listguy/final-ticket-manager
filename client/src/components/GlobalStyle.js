@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+/* This component exports a global style sheet that changes the colors םכ all elements
+ affected in the sheet. Depending on the theme */
 export const BodyStyle = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body.body};

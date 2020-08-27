@@ -7,6 +7,8 @@ const dbPath = './data.json';
 app.use(express.json());
 
 app.get('/api/tickets/labels', async (req, res) => {
+  /* An endpiont to get all labels.
+    loops through all ticket's labels and returns an array containing each label once */
   const data = await fs.readFile(dbPath);
   try {
     const json = JSON.parse(data);
@@ -29,6 +31,7 @@ app.get('/api/tickets/labels', async (req, res) => {
 });
 
 app.post('/api/tickets', async (req, res) => {
+  // An entry point to add a new ticket to data.json
   const data = await fs.readFile(dbPath);
   const json = JSON.parse(data);
 

@@ -7,6 +7,7 @@ function Ticket(props) {
   } = props;
 
   const convertTime = (timeInms) => {
+    // This function converts ms into beautiful data and time format
     const date = new Date(timeInms);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}, ${
       date.getHours() > 12 ? date.getHours() - 12 : date.getHours()

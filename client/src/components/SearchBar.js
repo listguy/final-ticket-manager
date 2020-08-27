@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/SearchBar.css';
 
 export default function SearchBar(props) {
+  /* This component handles the search bar and all of it's notifications
+  (hidden tickets counter and search results) */
   const {
     setSearchText,
     resultsCounter,

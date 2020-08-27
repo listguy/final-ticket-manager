@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/LabelsBar.css';
 
 export default function LabelsBar(props) {
+  // This component creates the active labels bar
+
   const {
     allLabels,
     activeLabels,

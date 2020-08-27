@@ -11,6 +11,9 @@ import swal from 'sweetalert';
 import AddButton from './AddButton';
 
 export default function NewTicketDialog(props) {
+  /* This component creates the add new ticket functionallity, using material-ui dialog
+  and a trigger AddButton */
+
   const [open, setOpen] = React.useState(false);
 
   const newTicket = {

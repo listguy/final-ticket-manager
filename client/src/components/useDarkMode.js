@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useDarkMode = () => {
+  // Customized state to handle themes
   const [theme, setTheme] = useState('light');
   const [themeLoaded, setThemeLoaded] = useState(false);
 

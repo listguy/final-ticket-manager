@@ -29,13 +29,15 @@ function App() {
   const connectedToApi = tickets && allLabels[0];
 
   const fetchTickets = async () => {
+    //Fetching tickets from server
     let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
     const { data } = await axios.get(url);
     setTickets(data);
+    searchText ? setResultCounter(data.length) : setResultCounter(0);
+    //Fetching all labels from server
     let labels = await axios.get("/api/tickets/labels");
     labels = labels.data;
     allLabels.length !== labels.length && setAlllabels(labels);
-    searchText ? setResultCounter(data.length) : setResultCounter(0);
   };
 
   useEffect(() => {
@@ -70,6 +72,8 @@ function App() {
   const displayTickets = () => {
     let toDisplay = tickets;
     if (activeLabels[0]) {
+      /*To filter by all we'll use every, and check if a tickets label arr contains all active labels,
+        to filter regulary we'll use some because one label is enough*/
       let filterMethod = filterByAll ? "every" : "some";
       toDisplay = tickets.filter((t) => {
         return t.labels
@@ -79,6 +83,7 @@ function App() {
       toDisplay.length !== resultsCounter && setResultCounter(toDisplay.length);
     }
     if (toDisplay[0]) {
+      // Mapping the array to create a Ticket element for each ticket
       return toDisplay.map((t, i) => (
         <Ticket
           key={`ticket${i}`}

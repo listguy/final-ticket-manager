@@ -1,3 +1,5 @@
+/* This component exports two objects that contain style value to light and dark themes.
+  Global style will then use it to set the values to it's style sheet */
 export const lightTheme = {
   body: {
     body: 'rgba(218, 239, 254, 0.9)',
