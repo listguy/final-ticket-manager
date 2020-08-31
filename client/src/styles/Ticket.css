@@ -3,6 +3,7 @@
   margin: 20px auto;
   width: 80vw;
   border-radius: 15px;
+  word-wrap: break-word;
 }
 
 .fade-out {
