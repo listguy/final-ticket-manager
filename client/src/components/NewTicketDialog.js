@@ -27,11 +27,11 @@ export default function NewTicketDialog(props) {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const closeDialog = () => {
     setOpen(false);
   };
 
-  const handleSubmit = async () => {
+  const submitTicket = async () => {
     if (!newTicket.title || !newTicket.content) return;
 
     let parsedLabels = newTicket.labels
@@ -75,7 +75,7 @@ export default function NewTicketDialog(props) {
       <AddButton clickHandler={handleClickOpen} />
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={closeDialog}
         aria-labelledby="form-dialog-title"
         fullWidth
         color="yellow"
@@ -138,10 +138,10 @@ export default function NewTicketDialog(props) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={closeDialog} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={submitTicket} color="primary">
             Add
           </Button>
         </DialogActions>
