@@ -29,15 +29,17 @@ function App() {
   const connectedToApi = tickets && allLabels[0];
 
   const fetchTickets = async () => {
-    //Fetching tickets from server
-    let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
+    let trimSearchText = searchText;
+    if(trimSearchText) {
+      trimSearchText = searchText.replace(/^\s+/g, "");
+    }
+    let url = `/api/tickets${trimSearchText ? `?searchText=${trimSearchText}` : ``}`;
     const { data } = await axios.get(url);
-    setTickets(data);
-    searchText ? setResultCounter(data.length) : setResultCounter(0);
-    //Fetching all labels from server
     let labels = await axios.get("/api/tickets/labels");
     labels = labels.data;
     allLabels.length !== labels.length && setAlllabels(labels);
+    setTickets(data);
+    trimSearchText ? setResultCounter(data.length) : setResultCounter(0);
   };
 
   useEffect(() => {
