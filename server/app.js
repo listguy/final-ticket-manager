@@ -13,7 +13,8 @@ app.get('/api/tickets/labels', async (req, res) => {
   try {
     const json = JSON.parse(data);
 
-    const labels = [];
+    const labels = json.map(ticket => ticket.labels || []).flat().filter(label => label === l)
+    const uniqueLabels = [...new Set(labels)];
     Array.from(json).forEach((ticket) => {
       if (ticket.labels) {
         ticket.labels.forEach((l) => {
