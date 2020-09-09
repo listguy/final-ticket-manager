@@ -1,0 +1,53 @@
+.ticket {
+  padding: 10px 20px 20px;
+  margin: 20px auto;
+  width: 80vw;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+
+.fade-out {
+  transition: opacity 1s;
+  opacity: 0.5;
+}
+
+.hideTicketButton {
+  width: fit-content;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.hideTicketButton:hover {
+  font-weight: bold;
+}
+
+.ticket-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-bottom: 20px;
+}
+
+.ticket-content {
+  padding-bottom: 20px;
+  line-height: 2em;
+}
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.info {
+  font-size: 0.8em;
+}
+
+.lables {
+  margin-right: 20px;
+}
+
+.label {
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin: auto 3px;
+}
