@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import network from "./network_wrapper";
 import Ticket from "./components/Ticket.js";
 import NewTicketDialog from "./components/NewTicketDialog";
 import { ThemeProvider } from "styled-components";
@@ -28,12 +29,27 @@ function App() {
 
   const connectedToApi = tickets && allLabels[0];
 
- const fetchTickets = async () => {
-    let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
-    const { data } = await axios.get(url);
+  // const fetchTickets = async () => {
+  //   let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
+  //   const { data } = await axios.get(url);
+  //   setTickets(data);
+  //   let labels = await axios.get("/api/tickets/labels");
+  //   labels = labels.data;
+  //   allLabels.length !== labels.length && setAlllabels(labels);
+  //   searchText ? setResultCounter(data.length) : setResultCounter(0);
+  // };
+
+  const fetchTickets = async () => {
+    // let url = `/api/tickets${searchText ? `?searchText=${searchText}` : ``}`;
+    // const { data } = await axios.get(url);
+    const data = await network(
+      "",
+      searchText ? { searchText: searchText } : {}
+    );
     setTickets(data);
-    let labels = await axios.get("/api/tickets/labels");
-    labels = labels.data;
+    // let labels = await axios.get("/api/tickets/labels");
+    // labels = labels.data;
+    const labels = await network("/labels");
     allLabels.length !== labels.length && setAlllabels(labels);
     searchText ? setResultCounter(data.length) : setResultCounter(0);
   };
