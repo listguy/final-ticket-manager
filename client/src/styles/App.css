@@ -1,0 +1,36 @@
+html {
+  scroll-behavior: smooth;
+}
+#theme-toggler {
+  cursor: pointer;
+  margin: 1vw 1vw 0;
+  width: fit-content;
+  font-size: 2em;
+}
+#headers {
+  margin-left: 5vw;
+}
+#header {
+  font-size: 3em;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+#subheader {
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.errMsg {
+  text-align: center;
+}
+
+.errMsg p {
+  font-size: 3em;
+  margin-bottom: 1em;
+}
+
+main {
+  width: 95vw;
+  margin: 0 1vw;
+}
