@@ -4,6 +4,7 @@
   width: 80vw;
   border-radius: 15px;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .fade-out {
