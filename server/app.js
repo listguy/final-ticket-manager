@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs").promises;
-// const path = require("path");
+const path = require("path");
 
 const app = express();
 const dbPath = "./data.json";
