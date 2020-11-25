@@ -1,5 +1,9 @@
 # Final 2 - Cyber4s. Nitzan Listman
 
+## View it Live
+[on Glitch](https://listguy-ticket-mannager-glitch2-2.glitch.me)
+
+
 ## Introducing: Dark mode<br />
 
 For those who are binded by light colors, worry no more!<br/>
@@ -40,9 +44,6 @@ Back to top button:<br/>
 
 <br/><br/><br/>
 
-[Link to glitch](https://listguy-ticket-mannager-glitch2-2.glitch.me)
-
-<br/><br/><br/>
 
 ## gif <br/>
 
