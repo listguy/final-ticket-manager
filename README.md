@@ -1,4 +1,4 @@
-# Final 2 - Cyber4s. Nitzan Listman
+# Ticket Manager - Nitzan Listman
 
 ## View it Live
 [on Glitch](https://listguy-ticket-mannager-glitch2-2.glitch.me)
@@ -6,7 +6,7 @@
 
 ## Introducing: Dark mode<br />
 
-For those who are binded by light colors, worry no more!<br/>
+For those who are blinded by light colors, worry no more!<br/>
 Click the sun logo in the top left corner of the site and welcome yourself to the dark side.<br/><br/>
 ![Dark mode preview](./readme-files/dark-mode-prev.png)<br/><br/>
 Wanna go back? Click the moon<br/><br/>
